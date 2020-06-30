@@ -14,20 +14,21 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import { mapActions } from "vuex";
 
 export default {
   name: "SearchUser",
   data() {
     return {
-      login: ''
+      login: ""
     };
   },
   methods: {
-      ...mapActions(["fetchUser"]),
+    ...mapActions(["fetchUser", "userRepos"]),
     searchUser() {
-        this.fetchUser(this.login)
-        this.$router.push({path: '/user', params: {username: this.login}})
+      this.$router.push({ path: "/user", params: { username: this.login } });
+      this.fetchUser(this.login);
+      this.userRepos(this.login);
     },
   },
 };

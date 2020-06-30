@@ -11,6 +11,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  list-style: none;
 }
 
 body {
@@ -23,5 +24,27 @@ body {
   margin: auto;
   overflow: auto;
   padding: 0 2rem;
+}
+
+.main-container {
+  min-height: calc(100vh - 64px);
+}
+a {
+  text-decoration: none;
+  color: rgb(21, 99, 99);
+}
+a:hover {
+  text-decoration: wavy;
+}
+
+.read-data {
+  width: 100%;
+  min-height: calc(100vh - 64px);
+  padding: 0 1rem 0 3rem;
+  overflow: hidden;
+}
+
+#read-data {
+  margin: 0 auto;
 }
 </style>

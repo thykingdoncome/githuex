@@ -25,7 +25,7 @@
             This User has no Public repository or 0 repositories
           </h3> -->
         <ul>
-          <li v-for="repo in repos" :key="repo.id">
+          <li v-for="repo in setRepos" :key="repo.id">
             <h2>{{ repo["name"] }}</h2>
             <p>{{ repo.description }}</p>
             <div class="italic">
@@ -40,15 +40,15 @@
             </div>
             <div class="italic">
               <!-- <router-link :to="{name: 'Readme', params: {username: userName, repo: item.name}}"> -->
-              <!-- <router-link :to="`/readme/${userName}/${item.name}`"> -->
+              <router-link :to="`/readme/${currentUser.login}/${repo.name}`">
                 <button>
                   View Readme
                 </button>
-              <!-- </router-link> -->
+              </router-link>
 
-              <!-- <a v-if="item.homepage" :href="item.homepage" target="_blank" >-->
+              <a v-if="repo.homepage" :href="repo.homepage" target="_blank" >
                 <button>Live Preview</button>
-                <!-- </a >-->
+                </a >
               
             </div>
           </li>
@@ -60,31 +60,15 @@
 
 <script>
 import { mapGetters} from "vuex";
-import axios from "axios";
+
+
 export default {
   name: "User",
-  data() {
-    return {
-      repos: "",
-    };
-  },
-  computed: mapGetters(["currentUser"]),
+  computed: mapGetters(["currentUser", "setRepos"]),
   methods: {
-    // ...mapActions(["fetchUserRepo"])
-    async fetchUserRepo() {
-      try {
-        const res = await axios.get(
-          `https://api.github.com/users/${this.currentUser.login}/repos`
-        );
-        this.repos = res["data"];
-        console.log("thhiiiiss", this.repos);
-      } catch (error) {
-        console.log(error);
-      }
-    },
-  },
-  created() {
-    this.fetchUserRepo();
+  //  fetchReaddme() {
+  //    this.router
+  //  }
   },
 };
 </script>

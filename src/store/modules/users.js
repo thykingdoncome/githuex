@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const state = {
     user: "",
-    // userRepo: '',
+    userRepo: '',
     defaultUsers: [
         {
             id: 1,
@@ -27,6 +27,18 @@ const state = {
             login: "femioladeji",
             name: "Femi Oladeji",
             avatar_url: `https://avatars0.githubusercontent.com/u/17332992?v=4`
+        },
+        {
+            id: 5,
+            login: "obayomi96",
+            name: "Obayomi Martins",
+            avatar_url: `https://avatars1.githubusercontent.com/u/43539944?v=4`
+        },
+        {
+            id: 6,
+            login: "bradtraversy",
+            name: "Brad Traversy",
+            avatar_url: `https://avatars2.githubusercontent.com/u/5550850?v=4`
         }
     ]
 }
@@ -34,27 +46,25 @@ const state = {
 const getters = {
     allDefaultUsers: state => state.defaultUsers,
     currentUser: state => state.user,
-    // userRepo: state => [...state.user.login]
+    setRepos: state => state.userRepo
 }
 
 const actions = {
-
     async fetchUser( {commit}, username) {
         const res = await axios.get(`https://api.github.com/users/${username}`);
         commit('setUser', res.data)
     },
-    // async fetchUserRepo({commit}) {
-    //     const user = [...state.user.login]
-    //     const res = await axios.get(`https://api.github.com/users/${user}/repos`);
-    //     console.log(res); 
-    //     commit('setRepos', res)
-    // }
-
+    async userRepos({commit}, username) {
+        const res = await axios.get(
+            `https://api.github.com/users/${username}/repos`
+        );
+        commit('getRepo', res.data)
+    }
 }
 
 const mutations = {
     setUser: ( state, username ) => (state.user = username),
-    // setRepos: (state, user) => (state.userRepo = user)
+    getRepo: (state, username) => (state.userRepo = username)
 }
 
 
