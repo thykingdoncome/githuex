@@ -77,7 +77,7 @@ const actions = {
 
 const mutations = {
     setUser: ( state, username ) => (state.user = username),
-    getRepo: (state, username) => (state.userRepo = username)
+    getRepo: (state, repos) => (state.userRepo = repos)
 }
 
 

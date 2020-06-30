@@ -7,7 +7,7 @@
           <h2>{{ currentUser.name }}</h2>
           <h3>
             <a :href="href" target="_blank" rel="noopener noreferrer">
-              @ {{currentUser.login}}
+              @ {{ currentUser.login }}
             </a>
           </h3>
           <p><span>Location:</span> {{ currentUser.location }}</p>
@@ -17,7 +17,7 @@
         </div>
       </div>
 
-      <div class="repos-sec"  v-if="setRepos.length !== 0">
+      <div class="repos-sec" v-if="setRepos.length !== 0">
         <h2 class="repo-header">
           REPOSITORIES
         </h2>
@@ -56,18 +56,42 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "User",
   data() {
     return {
-      href: ''
-    }
+      href: "",
+    };
   },
   computed: mapGetters(["currentUser", "setRepos"]),
-  mounted() {
-  this.href = `http://github.com/${this.currentUser.login}`
+  methods: {
+    ...mapActions(["fetchUser", "userRepos"]),
+    async fetchData() {
+      try {
+        const username = this.$route.params.username;
+        if (
+          this.$store.state.users.user === "" ||
+          this.$store.state.users.user === null
+        ) {
+          await this.fetchUser(username);
+          this.userRepos(username);
+          this.href = `http://github.com/${username}`;
+        }
+      } catch (error) {
+         this.$swal({
+          icon: "error",
+          html: `<span style="color:#ffff">${error}</span>`,
+          showConfirmButton: true,
+          timer: 3500,
+          background: "rgb(97, 27, 27)",
+        });
+      }
+    },
+  },
+  created() {
+    this.fetchData();
   },
 };
 </script>
