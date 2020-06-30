@@ -4,7 +4,7 @@
       <input
         type="text"
         name="login"
-        v-model="login"
+        v-model.trim="login"
         autofocus
         placeholder="Search User..."
       />
@@ -20,15 +20,44 @@ export default {
   name: "SearchUser",
   data() {
     return {
-      login: ""
+      login: "",
     };
   },
   methods: {
     ...mapActions(["fetchUser", "userRepos"]),
-    searchUser() {
-      this.$router.push({ path: "/user", params: { username: this.login } });
-      this.fetchUser(this.login);
-      this.userRepos(this.login);
+    async searchUser() {
+      const userName = this.login;
+      if (userName === "") {
+        this.$swal({
+          position: "top-end",
+          icon: "error",
+          html: `<span style="color:#ffff">please input a username!</span>`,
+          showConfirmButton: false,
+          timer: 3500,
+          background: "rgb(97, 27, 27)",
+          toast: true,
+        });
+      } else {
+        try {
+          await this.fetchUser(userName);
+          this.userRepos(userName);
+          this.$router.push({
+            name: "user",
+            params: { username: this.login },
+          });
+        } catch (error) {
+          this.login = '';
+          this.$swal({
+          position: "top-end",
+          icon: "error",
+          html: `<span style="color:#ffff">${error}</span>`,
+          showConfirmButton: false,
+          timer: 3500,
+          background: "rgb(97, 27, 27)",
+          toast: true,
+        });
+        }
+      }
     },
   },
 };
@@ -49,10 +78,11 @@ input[type="submit"] {
 .btn {
   display: inline-block;
   border: none;
-  background: #555;
+  background: #18412e;
   color: #fff;
   padding: 7px 20px;
   cursor: pointer;
+  transition: .3s;
 }
 .btn:hover {
   background: #666;

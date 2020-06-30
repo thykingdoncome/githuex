@@ -11,6 +11,15 @@
 <script>
 import axios from "axios";
 import showdown from "showdown";
+import dotEnv from 'dotenv'
+
+dotEnv.config()
+
+const {
+    VUE_APP_BASE_URL,
+     VUE_APP_CLIENT_ID,
+     VUE_APP_CLIENT_SECRET
+     } = process.env
 
 export default {
   name: "Readme",
@@ -29,7 +38,7 @@ export default {
         repo = this.$route.params.repo;
         const path = "README.md";
         const response = await axios.get(
-          `https://api.github.com/repos/${username}/${repo}/contents/${path}`
+          `${VUE_APP_BASE_URL}/repos/${username}/${repo}/contents/${path}/?client_id=${VUE_APP_CLIENT_ID}&client_secret=${VUE_APP_CLIENT_SECRET}`
         );
         const rawReadMe = atob(response.data.content);
         const convert = new showdown.Converter();
@@ -37,7 +46,6 @@ export default {
         this.readMe = html;
       } catch (error) {
         this.$swal("Something went wrong!");
-        console.log(error);
       }
     },
   },
