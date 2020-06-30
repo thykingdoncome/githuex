@@ -59,6 +59,14 @@ export default {
   padding-right: 2em;
 }
 
+a {
+  text-decoration: none;
+  color: rgb(21, 99, 99);
+}
+a:hover {
+  text-decoration: wavy;
+}
+
 .contact {
   font-size: 0.9em;
 }

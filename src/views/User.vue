@@ -13,7 +13,7 @@
           <p><span>Location:</span> {{ currentUser.location }}</p>
           <p><span>Followers:</span> {{ currentUser.followers }}</p>
           <p><span>Following:</span> {{ currentUser.following }}</p>
-          <p><span>Member Since:</span> {{ currentUser.created_at }}</p>
+          <p><span>Member Since:</span> {{ joined }}</p>
         </div>
       </div>
 
@@ -37,12 +37,12 @@
             </div>
             <div class="italic">
               <router-link :to="`/readme/${currentUser.login}/${repo.name}`">
-                <button>
+                
                   View Readme
-                </button>
+              
               </router-link>
               <a v-if="repo.homepage" :href="repo.homepage" target="_blank">
-                <button>Live Preview</button>
+                Live Preview
               </a>
             </div>
           </li>
@@ -63,6 +63,7 @@ export default {
   data() {
     return {
       href: "",
+      joined: "",
     };
   },
   computed: mapGetters(["currentUser", "setRepos"]),
@@ -77,10 +78,11 @@ export default {
         ) {
           await this.fetchUser(username);
           this.userRepos(username);
+          this.formatDate(this.currentUser.created_at)
           this.href = `http://github.com/${username}`;
         }
       } catch (error) {
-         this.$swal({
+        this.$swal({
           icon: "error",
           html: `<span style="color:#ffff">${error}</span>`,
           showConfirmButton: true,
@@ -89,9 +91,17 @@ export default {
         });
       }
     },
+    formatDate(date) {
+      const dy = new Date(date);
+      const yr = dy.getFullYear();
+      const m = dy.getMonth() + 1;
+      const d = dy.getDate();
+      this.joined = `${d}-${m}-${yr}`;
+    },
   },
   created() {
     this.fetchData();
+    this.formatDate(this.currentUser.created_at)
   },
 };
 </script>
@@ -176,18 +186,22 @@ li {
   padding-top: 0.7em;
 }
 
-li button {
+a{
+  color:rgb(21, 99, 99);
+}
+
+li a {
   border: 1px solid black;
-  padding: 0.6em;
+  padding: 0.4em;
   outline: none;
-  color: rgb(21, 99, 99);
   border-radius: 3px;
   cursor: pointer;
   font-weight: 700;
-  transition: 0.3s;
+  transition: 0.2s;
+  background: white;
 }
 
-li button:hover {
+li a:hover {
   background: rgb(52, 54, 54);
   color: rgb(212, 211, 211);
 }
