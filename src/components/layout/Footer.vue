@@ -29,6 +29,10 @@ footer {
   margin-bottom: 2rem;
 }
 
+a {
+  color: rgb(21, 99, 99);
+}
+
 a:hover {
   text-decoration: underline;
 }
