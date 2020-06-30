@@ -1,13 +1,13 @@
 import axios from 'axios'
 import dotEnv from 'dotenv'
 
-dotEnv.config()
+dotEnv.config({ debug: process.env.DEBUG })
 
 const {
     VUE_APP_BASE_URL,
      VUE_APP_CLIENT_ID,
      VUE_APP_CLIENT_SECRET
-     } = process.env
+     } = process.env;
 
 const state = {
     user: "",
