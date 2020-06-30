@@ -41,12 +41,9 @@ body {
 .main-container {
   min-height: calc(100vh - 64px);
 }
+
 a {
   text-decoration: none;
-  color: rgb(21, 99, 99);
-}
-a:hover {
-  text-decoration: wavy;
 }
 
 .read-data {
