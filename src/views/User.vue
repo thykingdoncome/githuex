@@ -1,14 +1,14 @@
 <template>
   <div class="main-container">
-    <!-- <Header /> -->
-    <div class="main-wrapper">
-      <!-- <input type="text" placeholder="search" /> -->
+    <div class="main-wrapper" v-if="currentUser.login">
       <div class="user-info">
         <div class="image-div"><img :src="currentUser.avatar_url" /></div>
         <div>
           <h2>{{ currentUser.name }}</h2>
           <h3>
-            <em>@{{ currentUser.login }}</em>
+            <a :href="href" target="_blank" rel="noopener noreferrer">
+              @ {{currentUser.login}}
+            </a>
           </h3>
           <p><span>Location:</span> {{ currentUser.location }}</p>
           <p><span>Followers:</span> {{ currentUser.followers }}</p>
@@ -17,13 +17,10 @@
         </div>
       </div>
 
-      <div class="repos-sec">
+      <div class="repos-sec"  v-if="setRepos.length !== 0">
         <h2 class="repo-header">
           REPOSITORIES
         </h2>
-        <!-- <h3 class="repo-header" v-if="this.repos.length == 0">
-            This User has no Public repository or 0 repositories
-          </h3> -->
         <ul>
           <li v-for="repo in setRepos" :key="repo.id">
             <h2>{{ repo["name"] }}</h2>
@@ -39,36 +36,38 @@
               </em>
             </div>
             <div class="italic">
-              <!-- <router-link :to="{name: 'Readme', params: {username: userName, repo: item.name}}"> -->
               <router-link :to="`/readme/${currentUser.login}/${repo.name}`">
                 <button>
                   View Readme
                 </button>
               </router-link>
-
-              <a v-if="repo.homepage" :href="repo.homepage" target="_blank" >
+              <a v-if="repo.homepage" :href="repo.homepage" target="_blank">
                 <button>Live Preview</button>
-                </a >
-              
+              </a>
             </div>
           </li>
         </ul>
       </div>
+      <h3 class="repo-header" v-else>
+        This User has no Public repository or 0 repositories
+      </h3>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters} from "vuex";
-
+import { mapGetters } from "vuex";
 
 export default {
   name: "User",
+  data() {
+    return {
+      href: ''
+    }
+  },
   computed: mapGetters(["currentUser", "setRepos"]),
-  methods: {
-  //  fetchReaddme() {
-  //    this.router
-  //  }
+  mounted() {
+  this.href = `http://github.com/${this.currentUser.login}`
   },
 };
 </script>

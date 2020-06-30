@@ -2,7 +2,9 @@
   <div class="app-header">
     <div>
       <span class="logo">
+      <router-link to="/">
         <h1>GITHUBER<i class="fab fa-github"></i></h1>
+      </router-link>
       </span>
     </div>
 
@@ -26,13 +28,6 @@
 <script>
 export default {
   name: "Header",
-  methods: {
-    toggle() {
-      const element = document.getElementById("app");
-      console.log(element)
-      element.classList.toggle("dark-mode");     
-    },
-  },
 };
 </script>
 
@@ -45,12 +40,8 @@ export default {
   flex-wrap: wrap;
   padding: 1em 0;
   width: 100%;
-  margin: 0 auto;
+  margin: 0 auto 3rem;
 }
-/* .dark-mode {
-  background: black;
-  color: white;
-} */
 
 .logo {
   font-size: 1em;
@@ -67,20 +58,6 @@ export default {
 .contact-wrapper span:nth-of-type(1) {
   padding-right: 2em;
 }
-
-/* .contact-wrapper span:nth-of-type(2) {
-  padding-right: 2em;
-} */
-
-/* .toggle {
-  border-radius: 50%;
-  padding: 1em;
-  border: none;
-  background: rgb(21, 99, 99);
-  color: white;
-  font-weight: 700;
-  outline: none;
-} */
 
 .contact {
   font-size: 0.9em;

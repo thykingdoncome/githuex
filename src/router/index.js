@@ -13,14 +13,13 @@ Vue.use(VueRouter)
     component: Home
   },
   {
-    path: '/user',
-    name: 'User',
+    path: '/user/:username',
+    name: 'user',
     component: User
-    // component: () => import(/* webpackChunkName: "about" */ '../views/User.vue')
   },
   {
     path: '/readme/:username/:repo',
-    name: 'Readme',
+    name: 'readme',
     component: Readme
 }
 ]

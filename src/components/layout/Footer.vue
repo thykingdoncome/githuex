@@ -1,74 +1,52 @@
 <template>
-  <footer >
- <div class="footer">
-      <div>
-      <b> &copy;</b> <span>{{ copyRight }} All rights reserved</span>
-    </div>
-
-    <div>
+  <footer>
+    <p>
+      Made with <i class="far fa-heart"></i> by
       <a
-        href="https://github.com/thykingdoncome/"
+        href="http://github.com/thykingdoncome"
         target="_blank"
         rel="noopener noreferrer"
       >
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
- </div>
+        thykingdoncome <i class="fab fa-github"></i
+      ></a>
+    </p>
   </footer>
 </template>
 
 <script>
 export default {
   name: "Footer",
-  data() {
-    return {
-      copyRight: ""
-    };
-  },
-  methods: {
-    myCopy() {
-      this.copyRight = new Date().getFullYear();
-    }
-  },
-
-  mounted() {
-    this.myCopy();
-  }
 };
 </script>
 
 <style scoped>
 footer {
-width: 100%;
-  background: black;
-}
-
-.footer {
   width: 100%;
-  margin: 0 auto;
-  padding: 1em;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-footer div:nth-of-type(1) {
   display: flex;
   align-items: center;
-}
-footer b {
-  font-size: 1.7em;
-  padding-right: 0.2em;
-}
-footer i {
-  color: white;
-  font-size: 2em;
+  justify-content: center;
+  color: rgb(21, 99, 99);
+  margin-bottom: 2rem;
 }
 
-@media screen and (max-width: 780px) {
-  .footer {
-    width: 95%;
+a:hover {
+  text-decoration: underline;
+}
+
+.fa-heart {
+  color: rgb(129, 30, 30);
+  animation: bounce 1.5s linear infinite;
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(0.8, 0.8);
+  }
+  50% {
+    transform: scale(1.2, 1.2);
+  }
+  100% {
+    transform: scale(0.8, 0.8);
   }
 }
 </style>

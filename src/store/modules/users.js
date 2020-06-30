@@ -1,4 +1,13 @@
 import axios from 'axios'
+import dotEnv from 'dotenv'
+
+dotEnv.config()
+
+const {
+    VUE_APP_BASE_URL,
+     VUE_APP_CLIENT_ID,
+     VUE_APP_CLIENT_SECRET
+     } = process.env
 
 const state = {
     user: "",
@@ -51,12 +60,16 @@ const getters = {
 
 const actions = {
     async fetchUser( {commit}, username) {
-        const res = await axios.get(`https://api.github.com/users/${username}`);
+       try {
+        const res = await axios.get(`${VUE_APP_BASE_URL}/users/${username}?client_id=${VUE_APP_CLIENT_ID}&client_secret=${VUE_APP_CLIENT_SECRET}`);
         commit('setUser', res.data)
+       } catch(error) {
+        throw "user does not exist"
+       }
     },
     async userRepos({commit}, username) {
         const res = await axios.get(
-            `https://api.github.com/users/${username}/repos`
+            `${VUE_APP_BASE_URL}/users/${username}/repos?per_page=100&client_id=${VUE_APP_CLIENT_ID}&client_secret=${VUE_APP_CLIENT_SECRET}`
         );
         commit('getRepo', res.data)
     }
