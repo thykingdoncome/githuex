@@ -10,7 +10,7 @@
               @ {{ currentUser.login }}
             </a>
           </h3>
-          <p><span>Location:</span> {{ currentUser.location }}</p>
+          <p v-if="currentUser.location"><span>Location:</span> {{ currentUser.location }}</p>
           <p><span>Followers:</span> {{ currentUser.followers }}</p>
           <p><span>Following:</span> {{ currentUser.following }}</p>
           <p><span>Member Since:</span> {{ joined }}</p>
