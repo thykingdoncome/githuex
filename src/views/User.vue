@@ -10,7 +10,9 @@
               @ {{ currentUser.login }}
             </a>
           </h3>
-          <p v-if="currentUser.location"><span>Location:</span> {{ currentUser.location }}</p>
+          <p v-if="currentUser.location">
+            <span>Location:</span> {{ currentUser.location }}
+          </p>
           <p><span>Followers:</span> {{ currentUser.followers }}</p>
           <p><span>Following:</span> {{ currentUser.following }}</p>
           <p><span>Member Since:</span> {{ joined }}</p>
@@ -37,9 +39,7 @@
             </div>
             <div class="italic">
               <router-link :to="`/readme/${currentUser.login}/${repo.name}`">
-                
-                  View Readme
-              
+                View Readme
               </router-link>
               <a v-if="repo.homepage" :href="repo.homepage" target="_blank">
                 Live Preview
@@ -78,7 +78,7 @@ export default {
         ) {
           await this.fetchUser(username);
           this.userRepos(username);
-          this.formatDate(this.currentUser.created_at)
+          this.formatDate(this.currentUser.created_at);
           this.href = `http://github.com/${username}`;
         }
       } catch (error) {
@@ -101,7 +101,8 @@ export default {
   },
   created() {
     this.fetchData();
-    this.formatDate(this.currentUser.created_at)
+    this.formatDate(this.currentUser.created_at);
+    this.href = `http://github.com/${this.currentUser.login}`;
   },
 };
 </script>
@@ -186,8 +187,8 @@ li {
   padding-top: 0.7em;
 }
 
-a{
-  color:rgb(21, 99, 99);
+a {
+  color: rgb(21, 99, 99);
 }
 
 li a {
