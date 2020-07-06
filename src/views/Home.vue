@@ -1,10 +1,6 @@
 <template>
   <div class="user-container">
-    <!-- <Header /> -->
-
     <SearchUser />
-
- 
     <h3 class="appreciation">Appreciation</h3>
 
     <div class="users">
@@ -29,9 +25,7 @@
 <script>
 import Footer from "../components/layout/Footer";
 import SearchUser from "../components/SearchUser";
-import { mapGetters } from "vuex";
-
-import { mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "Home",
@@ -55,8 +49,8 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
 .users {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -73,10 +67,16 @@ export default {
   position: relative;
   cursor: pointer;
 }
+
+ .darktheme .user {
+   color: black;
+ } 
+
 .appreciation {
   margin: 3rem 0 1rem;
-  color: #2a7e58;
+  color: #41b883;
 }
+
 .avatar {
   width: 100px;
   height: 100px;
