@@ -67,9 +67,15 @@ export default {
 form {
   display: flex;
 }
+
+input {
+  outline: none;
+}
+
 input[type="text"] {
   flex: 10;
   padding: 5px;
+
 }
 input[type="submit"] {
   flex: 2;

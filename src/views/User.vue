@@ -108,12 +108,16 @@ export default {
 </script>
 
 <style scoped>
+.main-container {
+  min-height: calc(100vh - 83px);
+}
+
 .user-info {
   display: flex;
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
-  color: rgb(21, 99, 99);
+  color: #41b883;
   margin: 0 auto;
 }
 
@@ -160,7 +164,7 @@ img {
 .repo-header {
   text-align: center;
   padding: 0.3em 0 1em;
-  color: rgb(21, 99, 99);
+  color: #41b883;
 }
 ul {
   width: 100%;
@@ -173,12 +177,16 @@ ul {
 li {
   padding: 0.5em 1em;
   margin: 1em 0 0.5em;
-  background: rgb(21, 99, 99);
+  background: #41b883;
   list-style: none;
   width: 45%;
-  color: rgb(212, 211, 211);
+  color: rgb(255, 255, 255);
   border-radius: 4px;
   height: fit-content;
+}
+
+.darktheme li {
+  color: black;
 }
 
 .italic {
@@ -188,7 +196,7 @@ li {
 }
 
 a {
-  color: rgb(21, 99, 99);
+  color: #41b883;
 }
 
 li a {
@@ -201,6 +209,10 @@ li a {
   transition: 0.2s;
   background: white;
 }
+
+ .darktheme li a {
+   background: black;
+ }
 
 li a:hover {
   background: rgb(52, 54, 54);

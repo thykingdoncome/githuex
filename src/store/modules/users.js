@@ -39,12 +39,18 @@ const state = {
         },
         {
             id: 5,
+            login: "otoloye",
+            name: "Otoloye Tosin Oyeniran",
+            avatar_url: `https://avatars2.githubusercontent.com/u/24937859?v=4`
+        },
+        {
+            id: 6,
             login: "obayomi96",
             name: "Obayomi Martins",
             avatar_url: `https://avatars1.githubusercontent.com/u/43539944?v=4`
         },
         {
-            id: 6,
+            id: 7,
             login: "bradtraversy",
             name: "Brad Traversy",
             avatar_url: `https://avatars2.githubusercontent.com/u/5550850?v=4`

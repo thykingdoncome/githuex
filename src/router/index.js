@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import User from '../views/User.vue'
 import Readme from '../views/Readme.vue'
+import NotFound from '../views/NotFound.vue'
+
 
 Vue.use(VueRouter)
 
@@ -21,6 +23,11 @@ Vue.use(VueRouter)
     path: '/readme/:username/:repo',
     name: 'readme',
     component: Readme
+},
+{
+  path: '*',
+  name: 'not_found',
+  component: NotFound
 }
 ]
 

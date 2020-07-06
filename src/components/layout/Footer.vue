@@ -25,12 +25,12 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgb(21, 99, 99);
-  margin-bottom: 2rem;
+  color: #41b883;
+  padding-bottom: 2rem;
 }
 
 a {
-  color: rgb(21, 99, 99);
+  color: #41b883;
 }
 
 a:hover {
