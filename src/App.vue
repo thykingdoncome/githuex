@@ -43,22 +43,19 @@ export default {
   name: "App",
    data() {
 			return {
-				theme: localStorage.getItem("theme")
+				theme: localStorage.getItem("theme") || 'light'
 			};
 		},
   methods: {
     setDarkMode() {
       localStorage.setItem("theme", "dark");
       this.theme = localStorage.getItem("theme")
-      console.log('daarrrkk', this.theme)
     },
 
     // Set Light Mode
     setLightMode() {
       localStorage.setItem("theme", "light");
       this.theme = localStorage.getItem("theme")
-      console.log('lighttttt', this.theme)
-
     },
   }
 };
